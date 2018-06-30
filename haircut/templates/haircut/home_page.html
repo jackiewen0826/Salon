@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amazing Jackie's Barbershop</title>
+</head>
+<body>
+    <h1>Amazing Jackie's Barbershop</h1>
+    <p>A Fresh Cut  For You And Your Family!</p>
+
+    <!-- Dish 1 -->
+    <p>Jason: 20RMB</p>
+    <img src="http://www.oldtownbarberclub.com/wp-content/uploads/2015/01/slide01.jpg">
+
+    <!-- Dish 2 -->
+    <p>Peter: 50RMB</p>
+    <img src="https://tse3.mm.bing.net/th?id=OIP.JP20qAEqGJJUkcgae1BHwQEsDH&pid=Api">
+
+    <!-- Dish 3 -->
+    <p>Nick: 30RMB</p>
+    <img src="http://wuw9h26ve432tts12no0xx1b.wpengine.netdna-cdn.com/wp-content/uploads/2016/05/Schorem-Feature-1024x767.jpg">
+
+    <h2>Place Your Order</h2>
+    <form action="{% url 'haircut:home_page' %}" method="POST">
+        {% csrf_token %}
+        <textarea placeholder="Text the Barber's Name" name="barber_name"></textarea><br>
+        <input type="text" name="time" placeholder="Type Your Time"><br>
+        <textarea placeholder="Text Your Name" name="customer_name"></textarea><br>
+        <input type="submit" value="Place Your Order">
+    </form>
+
+
+    {% for order in orders %}
+        <!-- Show Order -->
+        <h1>Your Order:</h1>
+        <p>Barber's Name:{{order.barber_name}}</p>
+        <p>Time Consumed:{{order.time}}</p>
+        <p>Consumer's Name:{{order.customer_name}}</p><hr>
+    {% endfor %}
+</body>
+</html>
